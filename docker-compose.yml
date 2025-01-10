@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  authentication:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VERSION: 1.0.0
+        CGO_ENABLED: 0
+    image: authentication:1.0.0
+    container_name: auth-service
+    ports:
+      - "8080:8080"
+    environment:
+      - ENV=development
+    restart: always
+    command: ["./authentication", "api"]
